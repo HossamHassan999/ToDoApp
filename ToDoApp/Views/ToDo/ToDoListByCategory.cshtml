@@ -1,0 +1,41 @@
+﻿@model List<ToDo>
+
+@{
+    ViewData["Title"] = "To-Do List By Category";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p>No to-dos available in this category.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var todo in Model)
+            {
+                <tr>
+                    <td>@todo.Name</td>
+                    <td>@todo.Description</td>
+                    <td>@todo.DueData.ToString("MM/dd/yyyy")</td>
+                    <td>@(todo.IsCompleted ? "Completed" : "Pending")</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "ToDo", new { id = todo.Id })" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="@Url.Action("DeleteToDo", "ToDo", new { id = todo.Id })" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

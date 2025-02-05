@@ -1,0 +1,69 @@
+﻿@model ToDoApp.Models.ToDo
+
+@{
+    ViewData["Title"] = "Edit ToDo";
+}
+
+<h2>Edit ToDo</h2>
+
+<form action="@Url.Action("SaveEdit", "ToDo", new { id = Model.Id })" method="post">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <!-- Name Field -->
+                <div class="form-group">
+                    <label for="Name" class="font-weight-bold">Name:</label>
+                    <input type="text" class="form-control" name="Name" id="Name" value="@Model.Name" required />
+                </div>
+
+                <!-- Description Field -->
+                <div class="form-group">
+                    <label for="Description" class="font-weight-bold">Description:</label>
+                    <input type="text" class="form-control" name="Description" id="Description" value="@Model.Description" required />
+                </div>
+
+                <!-- Due Date Field -->
+                <div class="form-group">
+                    <label for="DueData" class="font-weight-bold">Due Date:</label>
+                    <input type="date" class="form-control" name="DueData" id="DueData" value="@Model.DueData.ToString("yyyy-MM-dd")" required />
+                </div>
+
+                <!-- IsCompleted Field -->
+
+                <div class="form-group">
+                    <div class="form-group form-check">
+                        <input asp-for="IsCompleted" class="form-check-input" />
+                        <label asp-for="IsCompleted" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <!-- Category Field -->
+                <div class="form-group">
+                    <label for="CategoryId" class="font-weight-bold">Category:</label>
+                    <select name="CategoryId" class="form-control" required>
+
+                        @foreach (var item in ViewBag.Category)
+                        {
+                            if (item.Id == Model.CategoryId)
+                            {
+                                <option value="@item.Id" selected="selected">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success btn-lg">Save Changes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
