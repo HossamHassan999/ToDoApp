@@ -4,7 +4,7 @@ A simple and user-friendly To-Do List application built with **ASP.NET Core MVC*
 
 ## Features
 
-- **Task Management**: Create, update, and delete tasks.
+- **Task Management**: Create , update , and delete tasks.
 - **Categories**: Organize tasks by categories (e.g., Work, Personal).
 - **Due Dates**: Set a due date for each task.
 - **Task Completion**: Mark tasks as completed or pending.
